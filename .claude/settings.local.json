@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"preview HTTP %{http_code}\\\\n\" http://localhost:4173/)",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --hide-scrollbars --window-size=1440,2600 --screenshot=\"C:/Users/monster/Desktop/AI/Claude-Code/WebStudiLabs Website/_verify-full.png\" --virtual-time-budget=4000 \"http://localhost:4173/\")",
+      "Bash(ls -la _verify-full.png)",
+      "Bash(kill %1)",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --hide-scrollbars --window-size=1440,7200 --screenshot=\"C:/Users/monster/Desktop/AI/Claude-Code/WebStudiLabs Website/_verify-tall.png\" --virtual-time-budget=4500 \"http://localhost:4173/\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --hide-scrollbars --window-size=390,2400 --screenshot=\"C:/Users/monster/Desktop/AI/Claude-Code/WebStudiLabs Website/_verify-mobile.png\" --virtual-time-budget=4000 \"http://localhost:4173/\")",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --hide-scrollbars --window-size=390,1500 --screenshot=\"C:/Users/monster/Desktop/AI/Claude-Code/WebStudiLabs Website/_verify-mobile2.png\" --virtual-time-budget=4000 \"http://localhost:4173/\")"
+    ]
+  }
+}
