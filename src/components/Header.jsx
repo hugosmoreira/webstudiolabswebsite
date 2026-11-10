@@ -3,10 +3,10 @@ import Icon from '../ui/Icon.jsx';
 import Logo from '../ui/Logo.jsx';
 
 const NAV = [
-  ['Work', '#work'],
-  ['Services', '#services'],
-  ['Our Products', '#products'],
-  ['Studio', '#studio'],
+  ['Work', '/#work'],
+  ['Services', '/#services'],
+  ['Our Products', '/#products'],
+  ['Studio', '/#studio'],
 ];
 
 export default function Header() {
@@ -47,7 +47,7 @@ export default function Header() {
         Skip to content
       </a>
       <div className="wrap head-inner">
-        <a href="#top" aria-label="Web Studio Labs home" className="head-logo">
+        <a href="/#top" aria-label="Web Studio Labs home" className="head-logo">
           <Logo size={30} />
         </a>
         <nav className="head-nav" aria-label="Main">
@@ -58,7 +58,7 @@ export default function Header() {
           ))}
         </nav>
         <div className="head-cta">
-          <a href="#contact" className="btn btn-primary btn-sm">
+          <a href="/#contact" className="btn btn-primary btn-sm">
             Start a Project
             <Icon name="arrowRight" size={15} />
           </a>
@@ -81,7 +81,7 @@ export default function Header() {
             {label}
           </a>
         ))}
-        <a href="#contact" className="btn btn-primary" style={{ marginTop: 6 }} onClick={close}>
+        <a href="/#contact" className="btn btn-primary" style={{ marginTop: 6 }} onClick={close}>
           Start a Project
           <Icon name="arrowRight" size={16} />
         </a>

@@ -7,19 +7,19 @@ const FCOLS = [
   [
     'Services',
     [
-      ['Custom Software & Platforms', '#services'],
-      ['Mobile Applications', '#services'],
-      ['Product Design & Websites', '#services'],
-      ['Creator Platforms', '#creators'],
+      ['Custom Software & Platforms', '/#services'],
+      ['Mobile Applications', '/#services'],
+      ['Product Design & Websites', '/#services'],
+      ['Creator Platforms', '/#creators'],
     ],
   ],
   [
     'Studio',
     [
-      ['Work', '#work'],
-      ['Our Products', '#products'],
-      ['Studio & Process', '#studio'],
-      ['Start a Project', '#contact'],
+      ['Work', '/#work'],
+      ['Our Products', '/#products'],
+      ['Studio & Process', '/#studio'],
+      ['Start a Project', '/#contact'],
     ],
   ],
   ['Products', PRODUCTS.map((p) => [p.name, p.url])],
@@ -69,6 +69,9 @@ export default function Footer() {
       </div>
       <div className="wrap foot-bot">
         <span>© {new Date().getFullYear()} Web Studio Labs. All rights reserved.</span>
+        <a href="/privacy/" className="foot-link">
+          Privacy Policy
+        </a>
       </div>
     </footer>
   );

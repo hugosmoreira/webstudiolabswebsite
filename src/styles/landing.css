@@ -8,7 +8,7 @@
 .site-head { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background .3s ease, box-shadow .3s ease, backdrop-filter .3s ease; }
 .site-head.scrolled {
   background: color-mix(in srgb, var(--bg) 78%, transparent);
-  backdrop-filter: blur(14px) saturate(150%); -webkit-backdrop-filter: blur(14px) saturate(150%);
+  backdrop-filter: blur(14px) saturate(150%);
   box-shadow: 0 1px 0 var(--line-soft), 0 6px 24px -16px rgba(15,23,42,.3);
 }
 .head-inner { display: flex; align-items: center; gap: 28px; height: 70px; }
@@ -129,6 +129,8 @@ select.inp { cursor: pointer; appearance: none; background-image: url("data:imag
 .inp::placeholder { color: var(--muted-2); }
 .form-error { margin: 0; font-size: .9rem; color: #BE123C; }
 .form-error a { text-decoration: underline; }
+.form-note { margin: 0; text-align: center; font-size: .84rem; color: var(--muted); }
+.form-note a { color: var(--accent-strong); text-decoration: underline; text-underline-offset: 2px; }
 .contact-aside { display: flex; flex-direction: column; gap: 18px; }
 .aside-fit { background: linear-gradient(165deg, var(--accent-soft), var(--surface)); }
 .aside-list { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
@@ -150,6 +152,21 @@ select.inp { cursor: pointer; appearance: none; background-image: url("data:imag
 a.foot-link { display: inline-flex; align-items: center; align-self: flex-start; }
 a.foot-link:hover { color: #fff; }
 .foot-bot { display: flex; align-items: center; justify-content: space-between; padding: 22px 28px; border-top: 1px solid rgba(255,255,255,.08); font-size: .86rem; color: rgba(255,255,255,.5); }
+
+/* ---- Document pages (privacy, 404) ---- */
+.doc-page { padding-top: 140px; padding-bottom: clamp(64px, 9vw, 120px); }
+.doc { max-width: 720px; }
+.doc-meta { margin-top: 12px; font-size: .9rem; color: var(--muted); }
+.doc > p, .doc li { font-size: 1rem; line-height: 1.7; color: var(--text); }
+.doc > p { margin-top: 18px; }
+.doc h2 { margin-top: 44px; font-size: 1.3rem; font-weight: 600; letter-spacing: -0.018em; color: var(--ink); }
+.doc ul { margin-top: 14px; padding-left: 1.2em; display: flex; flex-direction: column; gap: 10px; }
+.doc strong { font-weight: 600; color: var(--ink); }
+.doc a { color: var(--accent-strong); text-decoration: underline; text-underline-offset: 2px; }
+.nf-page { min-height: 70vh; display: flex; align-items: center; }
+.nf { max-width: 560px; margin-inline: auto; text-align: center; }
+.nf-code { font-size: .9rem; letter-spacing: .14em; color: var(--accent); }
+.foot-bot a.foot-link { padding: 0; }
 
 /* ============================================================
    Responsive

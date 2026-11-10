@@ -124,6 +124,8 @@ export default function ContactForm() {
     <form className="card card-pad contact-form" onSubmit={submit} aria-busy={loading}>
       {/* Sets the Formspree email subject line */}
       <input type="hidden" name="_subject" value="New WebStudioLabs Project Request" />
+      {/* Formspree honeypot: people never see this field, so a filled value marks the submission as spam. */}
+      <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: 'none' }} />
       <div className="fld-row">
         <Field label="Name">
           <input className="inp" name="name" required autoComplete="name" value={form.name} onChange={set('name')} placeholder="Jane Doe" />
@@ -178,6 +180,9 @@ export default function ContactForm() {
         {loading ? 'Sending…' : 'Send Project Inquiry'}
         {!loading && <Icon name="arrowRight" size={17} />}
       </button>
+      <p className="form-note">
+        We use your details only to respond to your inquiry. See our <a href="/privacy/">Privacy Policy</a>.
+      </p>
     </form>
   );
 }
