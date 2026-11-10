@@ -3,11 +3,10 @@ import Icon from '../ui/Icon.jsx';
 import Logo from '../ui/Logo.jsx';
 
 const NAV = [
-  ['Services', '#services'],
-  ['Process', '#process'],
   ['Work', '#work'],
-  ['Pricing', '#pricing'],
-  ['Contact', '#contact'],
+  ['Services', '#services'],
+  ['Our Products', '#products'],
+  ['Studio', '#studio'],
 ];
 
 export default function Header() {

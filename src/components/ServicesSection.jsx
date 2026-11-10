@@ -3,39 +3,44 @@ import SectionHead from '../ui/SectionHead.jsx';
 import ServiceCard from './ServiceCard.jsx';
 
 const SERVICES = [
-  ['layout', 'Custom Web Applications', 'Business applications built for your exact operations — from scheduling systems to internal tools and customer portals.', ['Role-based dashboards', 'Forms & workflows', 'Admin panels', 'Secure databases']],
-  ['mobile', 'Mobile Applications', 'Modern mobile experiences for customers, staff, communities, events, and service-based businesses.', ['iOS / Android-ready UI', 'User accounts', 'Push-notification structure', 'App dashboard integration']],
-  ['bars', 'Internal Dashboards', 'Centralized dashboards that help you see your business clearly and make faster decisions.', ['Live metrics', 'Reports', 'Staff activity', 'Project tracking']],
-  ['portal', 'Client Portals', 'A professional place for clients to log in, view progress, manage subscriptions, send messages, and access files.', ['Client login', 'Project status', 'Billing', 'Deliverables']],
-  ['rocket', 'SaaS MVP Development', 'Turn your idea into a real subscription product with auth, database, payments, and user dashboards.', ['Auth & database', 'Subscription billing', 'Admin dashboard', 'Launch-ready MVP']],
-  ['bot', 'AI Assistants & Automation', 'Automate repetitive communication, intake, scheduling, support, reporting, and document workflows.', ['AI chat assistants', 'Voice workflows', 'Automated emails', 'Internal knowledge tools']],
+  {
+    icon: 'layout',
+    title: 'Custom Software & Platforms',
+    desc: 'Web applications, SaaS products, dashboards, and business systems designed around the people who use them.',
+    examples: ['Customer portals', 'Internal tools & dashboards', 'Memberships & marketplaces', 'Integrations'],
+  },
+  {
+    icon: 'mobile',
+    title: 'Mobile Applications',
+    desc: 'Mobile experiences for businesses, communities, and digital products, connected to the systems behind them.',
+    examples: ['Customer & member apps', 'Event & community apps', 'Mobile-first web apps', 'Connected to your backend'],
+  },
+  {
+    icon: 'sparkles',
+    title: 'Product Design & Websites',
+    desc: 'Clear interfaces and websites that connect your brand, your product, and the people you want to reach.',
+    examples: ['Product discovery', 'UI/UX design', 'Marketing websites', 'Design systems'],
+  },
 ];
 
 export default function ServicesSection() {
   return (
-    <section className="section" id="services">
+    <section className="section services-sec" id="services">
       <div className="wrap">
         <Reveal>
-          <SectionHead
-            eyebrow="Capabilities"
-            maxw={720}
-            title="What Web Studio Labs builds"
-            lead="One studio for the whole stack — from the first dashboard to a full subscription platform."
-          />
+          <SectionHead eyebrow="Capabilities" maxw={720} title="From an idea to a working product." />
         </Reveal>
         <div className="svc-grid">
-          {SERVICES.map(([icon, title, desc, features], i) => (
-            <Reveal key={title} delay={(i % 3) * 70}>
-              <ServiceCard
-                icon={icon}
-                letter={String.fromCharCode(65 + i)}
-                title={title}
-                desc={desc}
-                features={features}
-              />
+          {SERVICES.map((s, i) => (
+            <Reveal key={s.title} delay={i * 70}>
+              <ServiceCard num={'0' + (i + 1)} {...s} />
             </Reveal>
           ))}
         </div>
+        <p className="svc-note muted">
+          AI features where they genuinely help, like the narration in Voxian — never as a requirement for every
+          project.
+        </p>
       </div>
     </section>
   );

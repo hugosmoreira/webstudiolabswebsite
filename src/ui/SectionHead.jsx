@@ -1,13 +1,13 @@
 /* Section header — eyebrow + title + optional lead */
 
-export default function SectionHead({ eyebrow, title, lead, center, maxw = 640, light }) {
+export default function SectionHead({ eyebrow, title, lead, center, maxw = 640, light, flush }) {
   return (
     <div
       style={{
         maxWidth: maxw,
         marginInline: center ? 'auto' : 0,
         textAlign: center ? 'center' : 'left',
-        marginBottom: 'clamp(36px,5vw,60px)',
+        marginBottom: flush ? 0 : 'clamp(36px,5vw,60px)',
       }}
     >
       {eyebrow && (

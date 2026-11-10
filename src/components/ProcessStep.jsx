@@ -1,12 +1,11 @@
 import Icon from '../ui/Icon.jsx';
 
-/* A single step in the "How we work" process grid */
 export default function ProcessStep({ num, icon, title, desc }) {
   return (
-    <div className="proc-card card card-hover">
+    <div className="proc-card card">
       <div className="proc-head">
         <span className="proc-num mono">{num}</span>
-        <div className="proc-ic">
+        <div className="proc-ic" aria-hidden="true">
           <Icon name={icon} size={19} />
         </div>
       </div>

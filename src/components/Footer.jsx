@@ -1,34 +1,28 @@
 import Icon from '../ui/Icon.jsx';
 import Logo from '../ui/Logo.jsx';
+import { CONTACT_EMAIL } from '../data/site.js';
+import { PRODUCTS } from '../data/projects.js';
 
 const FCOLS = [
   [
     'Services',
     [
-      ['Web Applications', '#services'],
-      ['Mobile Apps', '#services'],
-      ['Dashboards', '#services'],
-      ['SaaS MVPs', '#services'],
-      ['AI & Automation', '#services'],
+      ['Custom Software & Platforms', '#services'],
+      ['Mobile Applications', '#services'],
+      ['Product Design & Websites', '#services'],
+      ['Creator Platforms', '#creators'],
     ],
   ],
   [
-    'Company',
+    'Studio',
     [
-      ['Process', '#process'],
       ['Work', '#work'],
-      ['Pricing', '#pricing'],
-      ['Contact', '#contact'],
-    ],
-  ],
-  [
-    'Contact',
-    [
+      ['Our Products', '#products'],
+      ['Studio & Process', '#studio'],
       ['Start a Project', '#contact'],
-      ['hello@webstudiolabs.com', 'mailto:hello@webstudiolabs.com'],
-      ['Remote · Worldwide', null],
     ],
   ],
+  ['Products', PRODUCTS.map((p) => [p.name, p.url])],
 ];
 
 export default function Footer() {
@@ -40,27 +34,37 @@ export default function Footer() {
           <p style={{ marginTop: 16, color: 'rgba(255,255,255,.55)', fontSize: '.95rem', maxWidth: 320 }}>
             An independent technology studio. We turn business problems into working software, end to end.
           </p>
-          <div className="foot-social">
-            <a href="mailto:hello@webstudiolabs.com" className="foot-soc" aria-label="Email Web Studio Labs">
-              <Icon name="mail" size={17} />
-            </a>
-          </div>
+          <a href={`mailto:${CONTACT_EMAIL}`} className="foot-mail">
+            <Icon name="mail" size={16} />
+            {CONTACT_EMAIL}
+          </a>
+          <span className="foot-link" style={{ display: 'block' }}>
+            Remote · Worldwide
+          </span>
         </div>
         {FCOLS.map(([title, links]) => (
-          <div key={title} className="foot-col">
+          <nav key={title} className="foot-col" aria-label={title}>
             <div className="foot-col-t mono">{title}</div>
-            {links.map(([label, href]) =>
-              href ? (
-                <a key={label} href={href} className="foot-link">
+            {links.map(([label, href]) => {
+              const external = href.startsWith('http');
+              return (
+                <a
+                  key={label}
+                  href={href}
+                  className="foot-link"
+                  {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
                   {label}
+                  {external && (
+                    <>
+                      <Icon name="arrowUpRight" size={13} style={{ marginLeft: 4 }} />
+                      <span className="sr-only">(opens in a new tab)</span>
+                    </>
+                  )}
                 </a>
-              ) : (
-                <span key={label} className="foot-link">
-                  {label}
-                </span>
-              )
-            )}
-          </div>
+              );
+            })}
+          </nav>
         ))}
       </div>
       <div className="wrap foot-bot">

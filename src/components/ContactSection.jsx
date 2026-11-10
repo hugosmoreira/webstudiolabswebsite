@@ -1,8 +1,14 @@
 import Icon from '../ui/Icon.jsx';
 import Reveal from '../ui/Reveal.jsx';
 import ContactForm from './ContactForm.jsx';
+import { CONTACT_EMAIL } from '../data/site.js';
 
-const FIT = ['Founders & operators', 'Service & local businesses', 'Teams replacing spreadsheets', 'SaaS builders & startups'];
+const FIT = [
+  'Businesses replacing spreadsheets or generic tools',
+  'Founders launching a new product',
+  'Creators, experts & communities',
+  'Event and sports organizations',
+];
 
 export default function ContactSection() {
   return (
@@ -16,7 +22,8 @@ export default function ContactSection() {
             </div>
             <h2 className="h1">Tell us what you want to build.</h2>
             <p className="lead" style={{ marginTop: 14, marginBottom: 28 }}>
-              A few details and we’ll come prepared. No pressure, no generic pitch.
+              Share your idea, the problem you want to solve, and where you are in the process. We’ll use those details
+              to discuss the right next step.
             </p>
             <ContactForm />
           </Reveal>
@@ -28,23 +35,20 @@ export default function ContactSection() {
               <h3 className="h3" style={{ marginTop: 16 }}>
                 Best fit for…
               </h3>
-              <p className="muted" style={{ marginTop: 8 }}>
-                Businesses and founders ready to build serious software: platforms, mobile apps, internal tools, or new
-                products.
-              </p>
               <div className="aside-list">
                 {FIT.map((t) => (
                   <div key={t} className="aside-item">
-                    <Icon name="check" size={15} style={{ color: 'var(--accent)' }} />
+                    <Icon name="check" size={15} style={{ color: 'var(--accent)', flexShrink: 0 }} />
                     {t}
                   </div>
                 ))}
               </div>
             </div>
             <div className="card card-pad aside-contact">
-              <a className="aside-c-row" href="mailto:hello@webstudiolabs.com">
+              <span className="fld-lbl">Prefer email?</span>
+              <a className="aside-c-row" href={`mailto:${CONTACT_EMAIL}`}>
                 <Icon name="mail" size={17} style={{ color: 'var(--accent)' }} />
-                hello@webstudiolabs.com
+                {CONTACT_EMAIL}
               </a>
               <div className="aside-c-row">
                 <Icon name="pin" size={17} style={{ color: 'var(--accent)' }} />

@@ -1,28 +1,72 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Icon from '../ui/Icon.jsx';
+import { onPreselectCategory } from '../lib/prefill.js';
+import { CONTACT_EMAIL } from '../data/site.js';
 
 const EMPTY = { name: '', email: '', company: '', build: '', budget: '', timeline: '', message: '' };
+
+const CATEGORIES = [
+  'Custom Software',
+  'Mobile App',
+  'Product Design or Website',
+  'Creator or Community Platform',
+  'Not Sure Yet',
+];
+const BUDGETS = ['$5k – $15k', '$15k – $40k', '$40k – $100k', '$100k+', 'Need guidance'];
+const TIMELINES = ['ASAP', '1–2 months', '3–6 months', 'Just exploring'];
 
 // Formspree endpoint (env-overridable, with a direct fallback for now).
 const FORMSPREE_ENDPOINT =
   import.meta.env.VITE_FORMSPREE_ENDPOINT || 'https://formspree.io/f/mwvzjlqe';
 
-function Field({ label, children }) {
+function Field({ label, optional, children }) {
   return (
     <label className="fld">
-      <span className="fld-lbl">{label}</span>
+      <span className="fld-lbl">
+        {label}
+        {optional && <span className="fld-opt"> (optional)</span>}
+      </span>
       {children}
     </label>
   );
 }
 
-/* Frontend-only: submits straight to Formspree via fetch. No backend/auth/payments. */
+function Select({ name, value, onChange, options, placeholder, required }) {
+  return (
+    <select className="inp" name={name} required={required} value={value} onChange={onChange}>
+      <option value="" disabled={required}>
+        {placeholder}
+      </option>
+      {options.map((o) => (
+        <option key={o} value={o}>
+          {o}
+        </option>
+      ))}
+    </select>
+  );
+}
+
+/* Frontend-only: submits straight to Formspree via fetch. */
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [form, setForm] = useState(EMPTY);
+  const sentRef = useRef(null);
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  useEffect(
+    () =>
+      onPreselectCategory((category) => {
+        setSent(false);
+        setForm((f) => (f.build ? f : { ...f, build: category }));
+      }),
+    []
+  );
+
+  useEffect(() => {
+    if (sent) sentRef.current?.focus();
+  }, [sent]);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -50,15 +94,18 @@ export default function ContactForm() {
 
   if (sent) {
     return (
-      <div className="card card-pad sent-card">
+      <div className="card card-pad sent-card" role="status">
         <div className="sent-ic">
           <Icon name="check" size={28} />
         </div>
-        <h3 className="h2">Request received.</h3>
+        <h3 className="h2" ref={sentRef} tabIndex={-1}>
+          Inquiry received.
+        </h3>
         <p className="muted" style={{ marginTop: 10 }}>
-          Thanks — your project request was sent. We’ll review it and get back to you.
+          Thanks — your project inquiry was sent. We’ll review it and get back to you.
         </p>
         <button
+          type="button"
           className="btn btn-ghost"
           style={{ marginTop: 18 }}
           onClick={() => {
@@ -74,50 +121,41 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="card card-pad contact-form" onSubmit={submit}>
+    <form className="card card-pad contact-form" onSubmit={submit} aria-busy={loading}>
       {/* Sets the Formspree email subject line */}
       <input type="hidden" name="_subject" value="New WebStudioLabs Project Request" />
       <div className="fld-row">
         <Field label="Name">
-          <input className="inp" name="name" required value={form.name} onChange={set('name')} placeholder="Jane Doe" />
+          <input className="inp" name="name" required autoComplete="name" value={form.name} onChange={set('name')} placeholder="Jane Doe" />
         </Field>
         <Field label="Email">
-          <input className="inp" name="email" type="email" required value={form.email} onChange={set('email')} placeholder="jane@company.com" />
+          <input
+            className="inp"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            value={form.email}
+            onChange={set('email')}
+            placeholder="jane@company.com"
+          />
         </Field>
       </div>
-      <Field label="Company">
-        <input className="inp" name="company" value={form.company} onChange={set('company')} placeholder="Company name" />
+      <Field label="Company, brand, or public profile" optional>
+        <input className="inp" name="company" autoComplete="organization" value={form.company} onChange={set('company')} placeholder="Company name, website, or @handle" />
       </Field>
       <Field label="What do you want to build?">
-        <select className="inp" name="build" required value={form.build} onChange={set('build')}>
-          {['Select one…', 'Custom web application', 'Mobile app', 'Internal dashboard', 'Client portal', 'SaaS MVP', 'AI assistant / automation', 'Not sure yet'].map((o, i) => (
-            <option key={o} value={i === 0 ? '' : o} disabled={i === 0}>
-              {o}
-            </option>
-          ))}
-        </select>
+        <Select name="build" required value={form.build} onChange={set('build')} options={CATEGORIES} placeholder="Select one…" />
       </Field>
       <div className="fld-row">
-        <Field label="Budget range">
-          <select className="inp" name="budget" value={form.budget} onChange={set('budget')}>
-            {['Select…', '$5k – $15k', '$15k – $40k', '$40k – $100k', '$100k+', 'Need guidance'].map((o, i) => (
-              <option key={o} value={i === 0 ? '' : o} disabled={i === 0}>
-                {o}
-              </option>
-            ))}
-          </select>
+        <Field label="Budget range" optional>
+          <Select name="budget" value={form.budget} onChange={set('budget')} options={BUDGETS} placeholder="Select…" />
         </Field>
-        <Field label="Timeline">
-          <select className="inp" name="timeline" value={form.timeline} onChange={set('timeline')}>
-            {['Select…', 'ASAP', '1–2 months', '3–6 months', 'Just exploring'].map((o, i) => (
-              <option key={o} value={i === 0 ? '' : o} disabled={i === 0}>
-                {o}
-              </option>
-            ))}
-          </select>
+        <Field label="Target timeline" optional>
+          <Select name="timeline" value={form.timeline} onChange={set('timeline')} options={TIMELINES} placeholder="Select…" />
         </Field>
       </div>
-      <Field label="Message">
+      <Field label="Project description">
         <textarea
           className="inp"
           name="message"
@@ -125,16 +163,19 @@ export default function ContactForm() {
           required
           value={form.message}
           onChange={set('message')}
-          placeholder="A sentence or two about your workflow and what’s slowing you down…"
+          placeholder="What do you want to build, what problem does it solve, and where are you in the process?"
         />
       </Field>
-      {error && (
-        <p className="muted" style={{ color: 'var(--rose)', fontSize: '.9rem', margin: 0 }}>
-          Something went wrong. Please email hello@webstudiolabs.com directly.
-        </p>
-      )}
+      <div role="alert">
+        {error && (
+          <p className="form-error">
+            Something went wrong and your inquiry wasn’t sent. Your details are still here — please try again, or
+            email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> directly.
+          </p>
+        )}
+      </div>
       <button type="submit" className="btn btn-primary btn-lg" style={{ width: '100%', marginTop: 4 }} disabled={loading}>
-        {loading ? 'Sending...' : 'Send project request'}
+        {loading ? 'Sending…' : 'Send Project Inquiry'}
         {!loading && <Icon name="arrowRight" size={17} />}
       </button>
     </form>

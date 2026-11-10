@@ -25,25 +25,25 @@ npm run lint     # ESLint
 ## Project structure
 
 ```
+public/work/                # real project screenshots, captured from the live sites
 src/
   main.jsx                  # entry — imports the design-system CSS + mounts <App/>
-  App.jsx                   # composes the full long-form page
+  App.jsx                   # composes the homepage
+  data/
+    projects.js             # SUG World Tour, Voxian, Housing Navigator: role, status, capture date, copy
+    site.js                 # shared business details (contact email)
+  lib/prefill.js            # lets section CTAs preselect a contact-form category
   styles/
     theme.css               # design tokens, typography, buttons, cards, utilities
     landing.css             # section + responsive styles
   ui/                       # reusable primitives
-    Icon.jsx  Logo.jsx  Reveal.jsx  SectionHead.jsx
-    Avatar.jsx  charts.jsx  (Sparkline / BarChart / Donut / Progress)
+    Icon.jsx  Logo.jsx  Reveal.jsx  SectionHead.jsx  Frames.jsx (screenshot frames)
   components/               # one file per page section
-    Header.jsx  Hero.jsx  HeroDashboard.jsx  TrustBar.jsx
-    ProblemSection.jsx  SolutionSection.jsx
-    ServicesSection.jsx  ServiceCard.jsx
-    UseCasesSection.jsx  ClientPortalPreview.jsx
-    ProcessSection.jsx  ProcessStep.jsx
-    ComparisonSection.jsx  WorkSection.jsx
-    EngagementModels.jsx  PricingCard.jsx
-    CTASection.jsx  ContactSection.jsx  ContactForm.jsx  Footer.jsx
-  portal/                   # PLACEHOLDERS for a future client portal (not built)
+    Header.jsx  Hero.jsx  WorkSection.jsx
+    ServicesSection.jsx  ServiceCard.jsx  CreatorPlatformsSection.jsx
+    StudioProductsSection.jsx  StudioSection.jsx  ProcessStep.jsx
+    ContactSection.jsx  ContactForm.jsx  Footer.jsx
+  portal/                   # PLACEHOLDERS for a future client portal (not built, not imported)
     PortalPlaceholder.jsx  DashboardHome.jsx  ProjectOverview.jsx
     Roadmap.jsx  Messages.jsx  Files.jsx  Billing.jsx
     SupportRequests.jsx  Settings.jsx  README.md
@@ -51,27 +51,22 @@ src/
 
 ## Page sections (top → bottom)
 
-1. Sticky header / navigation
-2. Hero
-3. Problem
-4. Solution
-5. Capabilities / services
-6. Use cases
-7. How we work (process)
-8. Why custom (comparison)
-9. Example builds (illustrative, not client case studies)
-10. Engagement models
-11. Final CTA
-12. Contact form
-13. Footer
+1. Header — Work · Services · Our Products · Studio · Start a Project
+2. Hero — positioning, CTAs, and the SUG World Tour screenshot
+3. Selected client work (`#work`) — SUG World Tour
+4. Capabilities (`#services`) — three service categories
+5. Creator & community platforms (`#creators`)
+6. Studio products (`#products`) — Voxian and Housing Navigator
+7. Studio & process (`#studio`) — intro, four steps, scoping note
+8. Start a project (`#contact`) — inquiry form and email
+9. Footer
 
-All nav links and CTA buttons scroll smoothly to in-page sections; the primary CTA is
-"Start a Project" and points to the contact section. The contact form submits to
-Formspree (`VITE_FORMSPREE_ENDPOINT`, see `.env.example`), so inquiries are sent to the
-configured Formspree inbox.
+All nav links and CTA buttons scroll to in-page sections; the primary CTA is
+"Start a Project". The contact form submits to Formspree (`VITE_FORMSPREE_ENDPOINT`,
+see `.env.example`), so inquiries are sent to the configured Formspree inbox.
 
-`HeroDashboard.jsx`, `TrustBar.jsx`, and `ClientPortalPreview.jsx` are no longer rendered.
-See `REBRAND_PLAN.md` for the rebrand roadmap.
+When a project changes, update `src/data/projects.js` and recapture its screenshot so
+the page only describes what is live. See `REBRAND_PLAN.md` for the rebrand roadmap.
 
 ## Not yet included (intentionally, pending approval)
 

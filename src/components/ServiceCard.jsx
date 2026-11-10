@@ -1,14 +1,13 @@
 import Icon from '../ui/Icon.jsx';
 
-/* A single capability / service card */
-export default function ServiceCard({ icon, letter, title, desc, features }) {
+export default function ServiceCard({ icon, num, title, desc, examples }) {
   return (
-    <div className="card card-hover svc-card">
+    <div className="card svc-card">
       <div className="svc-top">
         <div className="icon-chip">
           <Icon name={icon} size={23} />
         </div>
-        <span className="svc-num mono">{letter}</span>
+        <span className="svc-num mono">{num}</span>
       </div>
       <h3 className="h3" style={{ marginTop: 18 }}>
         {title}
@@ -17,7 +16,7 @@ export default function ServiceCard({ icon, letter, title, desc, features }) {
         {desc}
       </p>
       <ul className="svc-feats">
-        {features.map((f) => (
+        {examples.map((f) => (
           <li key={f}>
             <Icon name="check" size={15} style={{ color: 'var(--accent)', flexShrink: 0 }} />
             {f}
