@@ -29,7 +29,8 @@ export default function ContactSection() {
                 Best fit for…
               </h3>
               <p className="muted" style={{ marginTop: 8 }}>
-                Businesses ready to build serious internal tools, platforms, dashboards, or automation systems.
+                Businesses and founders ready to build serious software: platforms, mobile apps, internal tools, or new
+                products.
               </p>
               <div className="aside-list">
                 {FIT.map((t) => (
@@ -45,10 +46,6 @@ export default function ContactSection() {
                 <Icon name="mail" size={17} style={{ color: 'var(--accent)' }} />
                 hello@webstudiolabs.com
               </a>
-              <div className="aside-c-row">
-                <Icon name="clock" size={17} style={{ color: 'var(--accent)' }} />
-                Replies within 1 business day
-              </div>
               <div className="aside-c-row">
                 <Icon name="pin" size={17} style={{ color: 'var(--accent)' }} />
                 Remote · Worldwide

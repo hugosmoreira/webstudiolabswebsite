@@ -16,21 +16,13 @@ export default function CTASection() {
                 Let’s build the system your business actually needs.
               </h2>
               <p style={{ color: 'rgba(255,255,255,.66)', fontSize: '1.1rem', marginTop: 16, maxWidth: 620 }}>
-                Whether you need a dashboard, portal, mobile app, SaaS MVP, or AI automation system, WebStudioLabs
-                can help you turn the idea into a working product.
+                Whether it’s a platform, a mobile app, internal software, or a new product, Web Studio Labs takes
+                it from the problem to a working product.
               </p>
               <div className="hero-btns" style={{ marginTop: 30, justifyContent: 'center' }}>
                 <a href="#contact" className="btn btn-primary btn-lg">
-                  Book a Free Strategy Call
+                  Start a Project
                   <Icon name="arrowRight" size={17} />
-                </a>
-                <a
-                  href="#contact"
-                  className="btn btn-lg"
-                  style={{ background: 'rgba(255,255,255,.1)', color: '#fff', boxShadow: 'inset 0 0 0 1px rgba(255,255,255,.22)' }}
-                >
-                  <Icon name="inbox" size={16} />
-                  Send a Project Request
                 </a>
               </div>
             </div>

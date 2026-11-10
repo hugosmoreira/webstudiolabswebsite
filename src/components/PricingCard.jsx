@@ -4,7 +4,6 @@ import Icon from '../ui/Icon.jsx';
 export default function PricingCard({ name, icon, desc, features, featured = false }) {
   return (
     <div className={'card price-card' + (featured ? ' price-featured' : '')}>
-      {featured && <span className="price-flag">Most popular</span>}
       <div className="icon-chip" style={featured ? { background: 'rgba(255,255,255,.16)', color: '#fff' } : undefined}>
         <Icon name={icon} size={22} />
       </div>
@@ -30,7 +29,7 @@ export default function PricingCard({ name, icon, desc, features, featured = fal
         className={'btn ' + (featured ? 'btn-ghost' : 'btn-dark')}
         style={{ marginTop: 'auto', width: '100%', ...(featured ? { background: '#fff', color: 'var(--ink)', boxShadow: 'none' } : {}) }}
       >
-        Book a call
+        Start a Project
       </a>
     </div>
   );

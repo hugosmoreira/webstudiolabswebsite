@@ -56,7 +56,7 @@ export default function ContactForm() {
         </div>
         <h3 className="h2">Request received.</h3>
         <p className="muted" style={{ marginTop: 10 }}>
-          Thanks — your project request was sent. I’ll reply within 1 business day.
+          Thanks — your project request was sent. We’ll review it and get back to you.
         </p>
         <button
           className="btn btn-ghost"

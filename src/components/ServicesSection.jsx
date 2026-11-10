@@ -19,7 +19,7 @@ export default function ServicesSection() {
           <SectionHead
             eyebrow="Capabilities"
             maxw={720}
-            title="What WebStudioLabs builds"
+            title="What Web Studio Labs builds"
             lead="One studio for the whole stack — from the first dashboard to a full subscription platform."
           />
         </Reveal>

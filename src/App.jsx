@@ -4,7 +4,6 @@ import ProblemSection from './components/ProblemSection.jsx';
 import SolutionSection from './components/SolutionSection.jsx';
 import ServicesSection from './components/ServicesSection.jsx';
 import UseCasesSection from './components/UseCasesSection.jsx';
-import ClientPortalPreview from './components/ClientPortalPreview.jsx';
 import ProcessSection from './components/ProcessSection.jsx';
 import ComparisonSection from './components/ComparisonSection.jsx';
 import WorkSection from './components/WorkSection.jsx';
@@ -17,13 +16,12 @@ export default function App() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main" tabIndex={-1}>
         <Hero />
         <ProblemSection />
         <SolutionSection />
         <ServicesSection />
         <UseCasesSection />
-        <ClientPortalPreview />
         <ProcessSection />
         <ComparisonSection />
         <WorkSection />

@@ -52,24 +52,26 @@ src/
 ## Page sections (top → bottom)
 
 1. Sticky header / navigation
-2. Hero + dashboard mockup
-3. Trust bar
-4. Problem
-5. Solution
-6. Capabilities / services
-7. Use cases
-8. Client portal preview
-9. How we work (process)
-10. Why custom (comparison)
-11. Selected work (example builds)
-12. Engagement models
-13. Final CTA
-14. Contact form
-15. Footer
+2. Hero
+3. Problem
+4. Solution
+5. Capabilities / services
+6. Use cases
+7. How we work (process)
+8. Why custom (comparison)
+9. Example builds (illustrative, not client case studies)
+10. Engagement models
+11. Final CTA
+12. Contact form
+13. Footer
 
-All nav links and CTA buttons scroll smoothly to in-page sections; primary CTAs point
-to the contact section. The contact form is front-end only (shows a confirmation state;
-no data is sent anywhere yet).
+All nav links and CTA buttons scroll smoothly to in-page sections; the primary CTA is
+"Start a Project" and points to the contact section. The contact form submits to
+Formspree (`VITE_FORMSPREE_ENDPOINT`, see `.env.example`), so inquiries are sent to the
+configured Formspree inbox.
+
+`HeroDashboard.jsx`, `TrustBar.jsx`, and `ClientPortalPreview.jsx` are no longer rendered.
+See `REBRAND_PLAN.md` for the rebrand roadmap.
 
 ## Not yet included (intentionally, pending approval)
 
